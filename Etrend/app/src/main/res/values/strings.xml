@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Etrend-kovetes</string>
+    <string name="login">Bejelentkezés</string>
+    <string name="email">Emailcím</string>
+    <string name="password">Jelszó</string>
+    <string name="register">Regisztráció</string>
+    <string name="passwordagain">Jelszó megerősítés</string>
+    <string name="click_to_login">Már van fiókom</string>
+    <string name="click_to_register">Még nincs fiókom</string>
+    <string name="udv">Bejutottál a menűbe</string>
+    <string name="logout">Kijelentkezés</string>
+</resources>
