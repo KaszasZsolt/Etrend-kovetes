@@ -38,6 +38,7 @@ public class AuthService extends Service {
     }
 
     public FirebaseUser getCurrentUser() {
+        this.onCreate();
         return mAuth.getCurrentUser();
     }
 
@@ -54,6 +55,8 @@ public class AuthService extends Service {
     }
 
     public void logout() {
+
+        this.onCreate();
         mAuth.signOut();
     }
 }

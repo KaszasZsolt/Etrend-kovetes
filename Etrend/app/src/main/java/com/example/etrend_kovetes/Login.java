@@ -16,21 +16,19 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
     TextInputEditText editTextEmail, editTextPassword;
     Button buttonLogin;
-    FirebaseAuth mAuth;
     ProgressBar progressBar;
     TextView textView;
-
+    AuthService authService = new AuthService();
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
+
+        if(authService.getCurrentUser() != null){
             Intent intent=new Intent((getApplicationContext()),Main.class);
             startActivity(intent);
             finish();
@@ -42,7 +40,6 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth=FirebaseAuth.getInstance();
         editTextEmail=findViewById(R.id.email);
         editTextPassword=findViewById(R.id.password);
         buttonLogin=findViewById(R.id.btn_login);
@@ -76,14 +73,14 @@ public class Login extends AppCompatActivity {
                     return;
                 }
 
-                AuthService authService = new AuthService();
+
                 authService.loginUser(email, password, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
                             FirebaseUser user = authService.getCurrentUser();
-                            Toast.makeText(Login.this, "Login success.",
+                            Toast.makeText(Login.this, "Sikeres bejelentkezés.",
                                     Toast.LENGTH_SHORT).show();
                             Intent intent=new Intent((getApplicationContext()),Main.class);
                             startActivity(intent);

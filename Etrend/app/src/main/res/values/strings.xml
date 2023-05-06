@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Etrend-kovetes</string>
+    <string name="app_name">Táplálkozás</string>
     <string name="login">Bejelentkezés</string>
     <string name="email">Emailcím</string>
     <string name="password">Jelszó</string>
@@ -9,4 +9,26 @@
     <string name="click_to_register">Még nincs fiókom</string>
     <string name="udv">Bejutottál a menűbe</string>
     <string name="logout">Kijelentkezés</string>
+    <string name="profil">Profil</string>
+    <string name="size">Mértékegység</string>
+    <string name="add">Hozzáad</string>
+    <string name="headstring">"Mit fogyasztottál? Add hozzá! "</string>
+    <string name="weight">Mennyit</string>
+    <string name="from">Mit</string>
+    <string-array name="mertekegysegek">
+        <item>darab</item>
+        <item>gramm</item>
+        <item>dkg</item>
+        <item>kg</item>
+        <item>deciliter</item>
+        <item>liter</item>
+        <item>milliliter</item>
+        <item>szelet</item>
+        <item>pohár</item>
+        <item>korsó</item>
+        <item>lapostányér</item>
+        <item>mélytányér</item>
+        <item>teáskanál</item>
+        <item>evőkanál</item>
+    </string-array>
 </resources>
