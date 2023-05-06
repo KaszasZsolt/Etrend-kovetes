@@ -74,23 +74,29 @@ public class Register extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(email)){
                     Toast.makeText(Register.this, "Emailcím megadása kötelező", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
                     return;
                 }
                 if (TextUtils.isEmpty(password)){
                     Toast.makeText(Register.this, "Jelszó megadása kötelező", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+
                     return;
                 }
                 if (TextUtils.isEmpty(passwordagain)){
                     Toast.makeText(Register.this, "Jelszó megerősítése kötelező", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+
                     return;
                 }
                 if (!password.equals(passwordagain)){
                     Toast.makeText(Register.this, "Nem egyezik a jelszó", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+
                     return;
                 }
-
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                AuthService authService = new AuthService();
+                authService.registerUser(email, password, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
@@ -101,17 +107,26 @@ public class Register extends AppCompatActivity {
                                     Intent intent=new Intent((getApplicationContext()),Main.class);
                                     startActivity(intent);
                                     finish();
-
                                 } else {
 
-                                    Toast.makeText(Register.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    String localizedMessage = task.getException().getLocalizedMessage();
+                                    if(localizedMessage.equals("The email address is badly formatted."))
+                                        Toast.makeText(getApplicationContext(), "Az emailcím rosszul van formázva.", Toast.LENGTH_SHORT).show();
+                                    else if(localizedMessage.equals("The password is invalid or the user does not have a password."))
+                                        Toast.makeText(getApplicationContext(), "A jelszó érvénytelen.", Toast.LENGTH_SHORT).show();
+                                    else if(localizedMessage.equals("There is no user record corresponding to this identifier. The user may have been deleted."))
+                                        Toast.makeText(getApplicationContext(), "Nincs ilyen felhasználó.", Toast.LENGTH_SHORT).show();
+                                    else if(localizedMessage.equals("The given password is invalid. [ Password should be at least 6 characters ]"))
+                                        Toast.makeText(getApplicationContext(), "A jelszó hossza legalább 6 karakter.", Toast.LENGTH_SHORT).show();
+                                    else if(localizedMessage.equals("The email address is already in use by another account."))
+                                        Toast.makeText(getApplicationContext(), "Az email cím már foglalt.", Toast.LENGTH_SHORT).show();
+                                    else{
+                                        Toast.makeText(getApplicationContext(), "Hibás regisztráció.", Toast.LENGTH_SHORT).show();
+                                    }
 
                                 }
-
                             }
-                        });
-
+                });
             }
         });
     }

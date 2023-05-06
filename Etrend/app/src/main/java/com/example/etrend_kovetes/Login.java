@@ -67,36 +67,45 @@ public class Login extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(email)){
                     Toast.makeText(Login.this, "Emailcím megadása kötelező", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
                     return;
                 }
                 if (TextUtils.isEmpty(password)){
                     Toast.makeText(Login.this, "Jelszó megadása kötelező", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
                     return;
                 }
 
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressBar.setVisibility(View.GONE);
-                                if (task.isSuccessful()) {
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Toast.makeText(Login.this, "Login success.",
-                                            Toast.LENGTH_SHORT).show();
+                AuthService authService = new AuthService();
+                authService.loginUser(email, password, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressBar.setVisibility(View.GONE);
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = authService.getCurrentUser();
+                            Toast.makeText(Login.this, "Login success.",
+                                    Toast.LENGTH_SHORT).show();
+                            Intent intent=new Intent((getApplicationContext()),Main.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
 
-                                    Intent intent=new Intent((getApplicationContext()),Main.class);
-                                    startActivity(intent);
-                                    finish();
-
-                                } else {
-
-                                    Toast.makeText(Login.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-
-                                }
-                                return null;
+                            String localizedMessage = task.getException().getLocalizedMessage();
+                            if(localizedMessage.equals("The email address is badly formatted."))
+                                Toast.makeText(getApplicationContext(), "Az emailcím rosszul van formázva.", Toast.LENGTH_SHORT).show();
+                            else if(localizedMessage.equals("The password is invalid or the user does not have a password."))
+                                Toast.makeText(getApplicationContext(), "A jelszó érvénytelen.", Toast.LENGTH_SHORT).show();
+                            else if(localizedMessage.equals("There is no user record corresponding to this identifier. The user may have been deleted."))
+                                Toast.makeText(getApplicationContext(), "Nincs ilyen felhasználó.", Toast.LENGTH_SHORT).show();
+                            else{
+                                Toast.makeText(getApplicationContext(), "Hibás bejelentkezés.", Toast.LENGTH_SHORT).show();
                             }
-                        });
+
+                        }
+                    }
+                });
+
+
             }
         });
 
