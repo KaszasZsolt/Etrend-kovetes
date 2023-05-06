@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "795550874270",
+    "project_id": "etrend-kovetes",
+    "storage_bucket": "etrend-kovetes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795550874270:android:6c12966284b28293a4d98f",
+        "android_client_info": {
+          "package_name": "com.example.etrend_kovetes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "795550874270-a4sh51g5icoilmnp2dcg037ots6lrvpr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDozxrBV3cqZytPKKh-IXysYxGnWtNdvho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "795550874270-a4sh51g5icoilmnp2dcg037ots6lrvpr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
