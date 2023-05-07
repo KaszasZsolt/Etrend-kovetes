@@ -15,6 +15,11 @@
     <string name="headstring">"Mit fogyasztottál? Add hozzá! "</string>
     <string name="weight">Mennyit</string>
     <string name="from">Mit</string>
+    <string name="when">Fogyasztás időpontja</string>
+    <string name="what">Miből</string>
+    <string name="emlekz">Beállítás</string>
+    <string name="idozito">Itt állítható be időzitő, ilyen időközönként küldök emlékeztető üzenetet.</string>
+    <string name="ido">Időköz megadása másodpercben</string>
     <string-array name="mertekegysegek">
         <item>darab</item>
         <item>gramm</item>

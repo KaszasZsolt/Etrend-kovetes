@@ -5,13 +5,16 @@ public class Etel {
         private String name;
         private String amount;
 
+
+        private String etelId;
         private String amounttype;
         private long createDate;
 
         public Etel() {}
-        public Etel(String id,String name, String amount,String amounttype ,long timestamp){
+        public Etel(String id, String name, String amount, String etelId, String amounttype , long timestamp){
                 this.name=name;
                 this.amount=amount;
+                this.etelId = etelId;
                 this.createDate=timestamp;
                 this.id=id;
                 this.amounttype=amounttype;
@@ -55,4 +58,12 @@ public class Etel {
         public void setCreateDate(long timestamp) {
                 this.createDate = timestamp;
         }
+
+        public String getEtelId() {
+                return etelId;
+        }
+        public void setEtelId(String etelId) {
+                this.etelId = etelId;
+        }
+
 }

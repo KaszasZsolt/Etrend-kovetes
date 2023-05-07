@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,6 +26,8 @@ public class Login extends AppCompatActivity {
     ProgressBar progressBar;
     TextView textView;
     AuthService authService = new AuthService();
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -53,7 +57,8 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
-
+        Animation animation= AnimationUtils.loadAnimation(this,R.anim.login_animation);
+        buttonLogin.startAnimation(animation);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,6 +83,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressBar.setVisibility(View.GONE);
+
                         if (task.isSuccessful()) {
                             FirebaseUser user = authService.getCurrentUser();
                             Toast.makeText(Login.this, "Sikeres bejelentkezés.",

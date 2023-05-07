@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="8dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:showDividers="middle"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:padding="8dp"
+        >
+        <ImageButton
+            android:gravity="center"
+            android:id="@+id/bSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_alignParentRight="true"
+
+            android:layout_weight="1"
+            android:paddingTop="8dp"
+            android:layout_marginRight="1dp"
+            android:paddingBottom="8dp"
+            android:src="@drawable/baseline_create_24"
+            />
+        <ImageButton
+            android:gravity="center"
+            android:id="@+id/saveChange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_below="@id/bSearch"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:paddingTop="8dp"
+            android:layout_marginRight="1dp"
+            android:paddingBottom="8dp"
+            android:visibility="gone"
+            android:src="@drawable/baseline_save_24"
+            />
+        <ImageButton
+            android:gravity="center"
+            android:id="@+id/deleteAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+
+            android:layout_toStartOf="@id/bSearch"
+            android:layout_weight="1"
+            android:paddingTop="8dp"
+            android:layout_marginRight="1dp"
+            android:paddingBottom="8dp"
+            android:src="@drawable/baseline_delete_24"
+            />
+
+        <TextView
+            android:id="@+id/list_when"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+           android:layout_alignParentStart="true"
+
+            android:text="@string/when"
+
+            >
+
+        </TextView>
+
+        <ViewSwitcher
+            android:id="@+id/switchEditWhat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/list_when"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/list_what"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="@string/what"></TextView>
+
+            <EditText
+                android:id="@+id/editWhat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/from"
+                android:inputType="textCapSentences|textAutoCorrect" />
+
+        </ViewSwitcher>
+
+
+        <ViewSwitcher
+            android:id="@+id/switchlist_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/list_when"
+            android:layout_marginStart="8dp"
+
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toEndOf="@id/switchEditWhat"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/list_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+
+                android:text="@string/weight"></TextView>
+
+            <EditText
+                android:id="@+id/editWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/from"
+                android:inputType="text|numberDecimal"
+
+                />
+
+        </ViewSwitcher>
+
+
+        <ViewSwitcher
+            android:id="@+id/switchlist_mertekegyseg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/list_when"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toRightOf="@id/switchlist_weight"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/list_mertekegyseg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/weight">
+
+            </TextView>
+
+            <Spinner
+                android:id="@+id/switchlist_mertekegysegertek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/mertekegysegek"
+
+                android:prompt="@string/size" />
+
+        </ViewSwitcher>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@id/bSearch"
+            android:layout_toStartOf="@id/bSearch"
+            android:layout_weight="1"
+
+            android:layout_marginRight="1dp"
+            />
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
